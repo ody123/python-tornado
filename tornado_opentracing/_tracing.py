@@ -120,7 +120,7 @@ class BaseTornadoTracing(object):
         # start new span from trace info
         try:
             span_ctx = self._tracer.extract(opentracing.Format.HTTP_HEADERS,
-                                            headers)
+                                            dict(headers))
             scope = self._tracer.start_active_span(operation_name,
                                                    child_of=span_ctx)
         except (opentracing.InvalidCarrierException,
